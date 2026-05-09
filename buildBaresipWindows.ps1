@@ -130,32 +130,32 @@ cat > "$CONFIG_FILE" <<EOF
 poll_method          select
 sip_transports       udp,tcp,tls
 
-module               account.dll
-module               menu.dll
-module               stdio.dll
-module               wincons.dll
+module account.dll
+module menu.dll
+module stdio.dll
+module wincons.dll
 
-module               g711.dll
-module               wasapi.dll
-module               srtp.dll
-module               stun.dll
-module               turn.dll
-module               ice.dll
-module               uuid.dll
-module               netroam.dll
-module               vumeter.dll
+module g711.dll
+module wasapi.dll
+module srtp.dll
+module stun.dll
+module turn.dll
+module ice.dll
+module uuid.dll
+module netroam.dll
+module vumeter.dll
 
-audio_player         wasapi,default
-audio_source         wasapi,default
-audio_alert          wasapi,default
+audio_player wasapi,default
+audio_source wasapi,default
+audio_alert wasapi,default
 
-call_local_timeout   5
-call_max_calls       4
+call_local_timeout 5
+call_max_calls 4
 call_hold_other_calls yes
-call_transfer        yes
+call_transfer yes
 
-rtcp_enable          yes
-avpf                 yes
+rtcp_enable yes
+avpf yes
 EOF
 
 if [[ ! -f "$ACCOUNTS_FILE" ]]; then
@@ -175,36 +175,28 @@ fi
 
 touch "$CONTACTS_FILE"
 
-echo ""
-echo " Runtime config ready:"
-echo "  $CONFIG_FILE"
-echo "  $ACCOUNTS_FILE"
-echo "  $CONTACTS_FILE"
+echo "Runtime config ready:"
+echo "$CONFIG_FILE"
+echo "$ACCOUNTS_FILE"
+echo "$CONTACTS_FILE"
 
-echo ""
-echo " Config content:"
+echo "Config content:"
 cat "$CONFIG_FILE"
 
-echo ""
-echo " Accounts file:"
-echo "  $ACCOUNTS_FILE"
-echo ""
+echo "Accounts file:"
+echo "$ACCOUNTS_FILE"
 echo "Edit it with:"
-echo "  nano ~/.baresip/accounts"
-echo ""
+echo "nano ~/.baresip/accounts"
 echo "Or open the folder from MSYS2 with:"
-echo "  explorer.exe \"\$(cygpath -w ~/.baresip)\""
+echo "explorer.exe \"\$(cygpath -w ~/.baresip)\""
 
-echo ""
-echo " Build completed"
+echo "Build completed"
 echo "Baresip binary:"
-echo "  $WORKDIR/baresip/build/baresip.exe"
-echo ""
+echo "$WORKDIR/baresip/build/baresip.exe"
 echo "Installed binary:"
-echo "  /ucrt64/bin/baresip.exe"
-echo ""
+echo "/ucrt64/bin/baresip.exe"
 echo "Run from MSYS2 UCRT64:"
-echo "  baresip.exe -f ~/.baresip"
+echo "baresip.exe -f ~/.baresip"
 '@
 
 $BuildScript = $BuildScript.Replace("__WORKDIR__", $MsysWorkDir)
